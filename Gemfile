@@ -1,0 +1,13 @@
+source "http://rubygems.org"
+
+gem "csv"
+gem "date"
+gem "digest"
+gem "erb"
+gem "glorify"
+gem "oj"
+gem "rack"
+gem "sinatra"
+gem "sinatra-websocket"
+gem "thread"
+gem "uri"

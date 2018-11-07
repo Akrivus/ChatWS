@@ -1,0 +1,68 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Chat &mdash; ChatWS</title>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/js/mdb.min.js"></script>
+        <style>.justify-content-column{ height: calc(100% + 100px - calc(10.25rem + 2px)); min-height: calc(100% - calc(10.25rem + 2px)); flex: 1 1 auto !important; }</style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/css/mdb.min.css">
+        <link rel="stylesheet" type="text/css" href="/pygments.css" />
+        <link rel="stylesheet" type="text/css" href="/default.css" />
+    </head>
+    <body>
+        <div class="container d-flex flex-column">
+            <div class="row">
+                <div class="col-3 order-2 d-md-block d-sm-none">
+                    <div class="justify-content-column" style="overflow:hidden scroll;margin-top:1rem;margin-bottom:1rem;">
+                        <h4>Users</h4>
+                        <ul id="userlist" style="padding:0;padding-top:2rem;list-style-type:none;">
+                            <%settings.sockets.each do |user, socket|%>
+                                <%name = user.dup%>
+                                <li id="u<%=name.gsub(/[^A-Za-z]/, "")%>" class="name">
+                                    <%=glorify(name).gsub(/\n/, "")%>
+                                </li>
+                            <%end%>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col order-1">
+                    <div class="justify-content-column" id="output" style="overflow:hidden scroll;margin-top:1rem;">
+                        <h4>Messages</h4>
+                        <ul id="messages" style="padding:0;padding-top:2rem;list-style-type:none;">
+                            <%settings.logs.each do |log|%>
+                                <%=erb :message_user_public, locals: log%>
+                            <%end%>
+                        </ul>
+                    </div>
+                    <input type="text" class="form-control" id="input" placeholder="Hit enter to send." />
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var socket = new WebSocket('ws://' + window.location.host + window.location.pathname);
+            socket.onmessage = (function(message) {
+                $("#messages").append(message.data);
+                $("#output").scrollTop(1000000);
+                if ($(".chat").length % 2 == 0) {
+                    $(".chat").last().addClass("other");
+                }
+            });
+            $("#input").on("keyup", function(e) {
+                if (e.which == 13) {
+                    if ($("#input").val().length > 0) {
+                        socket.send($("#input").val());
+                        $("#input").val("");
+                    }
+                }
+            })
+            $("#input").on("click", function() {
+                $("#input").val("");
+            });
+        </script>
+    </body>
+</html>

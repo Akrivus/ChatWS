@@ -1,0 +1,7 @@
+<li class="message chat" id="m-<%=stamp%>">
+    <div class="row">
+        <div class="col-2 name"><%=glorify("#{name}:")%></div>
+        <div class="col text"><%=glorify("#{message}").gsub(/;;/, "<br />")%></div>
+        <div class="col-3 time"><%=glorify("#{Time.at(stamp).strftime("[%I:%M %p]")}")%></div>
+    </div>
+</li>

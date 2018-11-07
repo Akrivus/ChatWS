@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Join &mdash; ChatWS</title>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/js/mdb.min.js"></script>
+        <style>.justify-content-column { height: calc(100% + 100px); min-height: 100%; flex: 1 1 auto !important; }</style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.11/css/mdb.min.css">
+        <link rel="stylesheet" type="text/css" href="/pygments.css" />
+        <link rel="stylesheet" type="text/css" href="/default.css" />
+    </head>
+    <body>
+        <div class="container d-flex flex-column justify-content-column">
+            <h1 style="padding-top:2rem;">Join Chat!</h1>
+            <form action="/" method="POST">
+                <h5>Name</h5>
+                <input type="text" class="form-control" name="name" placeholder="Name" />
+                <h5>Password (Optional)</h5>
+                <input type="password" class="form-control" name="password" placeholder="Password" />
+                <p style="color:red;"><%=error%></p>
+                <input type="submit" class="btn" value="Join!" />
+            </form>
+        </div>
+    </body>
+</html>
