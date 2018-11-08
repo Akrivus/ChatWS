@@ -55,6 +55,9 @@ a:hover {
     text-align: center;
     font-style: italic;
 }
+.name {
+    white-space: nowrap !important;
+}
 .time {
     color: #AAAAAA;
     text-align: right;

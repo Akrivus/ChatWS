@@ -1,5 +1,5 @@
 <li class="message left"><%=glorify("#{name} has left the chat!")%></li>
-<script type="text/javascript">
+<script type="text/javascript" class="delete">
     $("#u<%=name.gsub(/[^A-Za-z]/, "")%>").remove();
     $(".delete").remove();
 </script>

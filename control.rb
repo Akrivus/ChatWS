@@ -108,6 +108,7 @@ get  "/chat" do
                         settings.sockets.each do |user, socket|
                             socket.send(erb(:message_user_public, locals: { name: session["name"], message: message, stamp: timestamp }))
                             settings.logs.push({ name: session["name"], message: message, stamp: timestamp })
+                            settings.logs.uniq!
                             if settings.logs.length > 10
                                 settings.logs.shift
                             end

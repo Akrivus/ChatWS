@@ -56,7 +56,7 @@ def tell(arg, message, users, name)
         if user["notes"].nil?
             users[name].send(erb(:message_command, locals: { text: "#{arg} has never been on this chat before." }))
         else
-            users[name].send(erb(:message_command, locals: { text: "Your message has been sent to #{name}!" }))
+            users[name].send(erb(:message_command, locals: { text: "Your message has been sent to #{arg}!" }))
             user["notes"].push({ name => message })
         end
     end
@@ -83,8 +83,9 @@ def flip(users, name)
     end
 end
 def ball(users, name)
+    message = ["Yes", "No.", "Maybe.", "Possibly.", "I doubt it.", "Definitely.", "Totally.", "Hell no.", "Of course."].sample
     users.each do |user, sockets|
-        sockets.send(erb(:message_ball_command, locals: { name: name }))
+        sockets.send(erb(:message_ball_command, locals: { name: name, message: message }))
     end
 end
 def motd(arg, users, name)
