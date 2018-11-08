@@ -7,9 +7,9 @@ To start it, run `ruby control.rb`
 
 ## Plans
 
-* Make the thing work.
-* Bootstrap it to make it look pretty.
-* Add accounts.
+* Make the thing work. (Done.)
+* Bootstrap it to make it look pretty. (Done.)
+* Add accounts. (Done.)
 * Add commands.
 * Experiment with VoIP?
 
