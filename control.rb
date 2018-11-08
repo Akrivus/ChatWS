@@ -41,26 +41,22 @@ end
 post "/" do
     if params.include? "name"
         response = erb :index, locals: { error: "Incorrect password." }
-        with_users do |users|
-            all_clear = true
-            if not users[params["name"]].nil?
-                if users[params["name"]].include? "password"
-                    if digest(params["password"]) != users[params["name"]]["password"]
-                        all_clear = false
-                    end
-                end
-            else
-                if not params["password"].empty?
-                    users[params["name"]] = { "password" => digest(params["password"]) }
+        name = unxss(params["name"]).gsub(" ", "_")
+        password = digest(params["password"])
+        all_clear = true
+        with_user(name) do |user|
+            if user.key? "password"
+                if user["password"] != password
+                    all_clear = false
                 end
             end
-            if all_clear
-                session["name"] = unxss(params["name"]) # Prevent XSS.
-                response = redirect "/chat"
-                if not session["name"].nil?
-                    users[session["name"]]["password"] = digest(params["password"])
-                end
+        end
+        if all_clear
+            if not params["password"].empty?
+                session["password"] = password
             end
+            session["name"] = name
+            response = redirect "/chat"
         end
         response
     else
@@ -83,12 +79,17 @@ get  "/chat" do
                     settings.sockets.each do |user, sockets|
                         sockets.send(erb(:message_user_join, locals: { name: session["name"] }))
                     end
-                    with_users do |users|
-                        if not users[session["name"]].nil?
-                            if not users[session["name"]]["notes"].nil?
-                                not users[session["name"]]["notes"] = []
+                    with_user(session["name"]) do |user|
+                        user["password"] = session["password"]
+                        user["lastSeen"] = timestamp
+                        if user.key? "notes"
+                            user["notes"].each do |hash|
+                                hash.each do |name, note|
+                                    settings.sockets[session["name"]].send(erb(:message_yell_command, locals: { name: name, text: note }))
+                                end
                             end
                         end
+                        user["notes"] = []
                     end
                 end
                 socket.onclose do
@@ -111,13 +112,9 @@ get  "/chat" do
                                 settings.logs.shift
                             end
                         end
-                        with_users do |users|
-                            if users[session["name"]].nil?
-                                users[session["name"]] = { "lastSeen" => timestamp }
-                            else
-                                users[session["name"]]["lastSeen"] = timestamp
-                            end
-                        end
+                    end
+                    with_user(session["name"]) do |user|
+                        user["lastSeen"] = timestamp
                     end
                 end
             end

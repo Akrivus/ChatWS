@@ -1,0 +1,17 @@
+<li class="message help">
+    <%[
+        "Here are our commands:",
+        "* `!help` - shows this message.",
+        "* `!show` - shows copyright/warranty information.",
+        "* `!seen` - shows the last time a user was online.",
+        "* `!tell` - adds a message a user will receive next time they are online.",
+        "* `!yell` - adds emphasis to a message.",
+        "* `!pass <password>` - changes password.",
+        "* `!pick` - picks a random user.",
+        "* `!dice` - picks a random number between 1 and 6.",
+        "* `!flip` - flips a coin.",
+        "* `!ball` - returns a random catchphrase."
+    ].each do |line|%>
+        <%=glorify(line)%>
+    <%end%>
+</li>

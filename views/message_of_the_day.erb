@@ -1,1 +1,4 @@
-<li class="message of-the-day"><%=glorify(File.read("./private/motd.text").gsub(/\n/, "<br />"))%></li>
+<%json = Oj.load_file("./private/motd.json")%>
+<li class="message of-the-day">
+    <%=glorify("#{json["lead"]};;#{json["motd"]}").gsub(";;", "<br />")%>
+</li>

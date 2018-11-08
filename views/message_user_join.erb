@@ -1,7 +1,6 @@
 <li class="message join"><%=glorify("#{name} has joined the chat!")%></li>
 <script class="delete" type="text/javascript">
-    $("#userlist").append(
-        "<li id=\"u<%=name.gsub(/[^A-Za-z]/, "")%>\" class=\"name\"><%=glorify(name).gsub(/\n/, "")%></li>"
-    );
+    $("#u<%=name.gsub(/[^A-Za-z]/, "")%>").remove();
+    $("#userlist").append("<li id=\"u<%=name.gsub(/[^A-Za-z]/, "")%>\" class=\"name\"><%=glorify(name).gsub(/\n/, "")%></li>");
     $(".delete").remove();
 </script>

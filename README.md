@@ -10,10 +10,8 @@ To start it, run `ruby control.rb`
 * Make the thing work. (Done.)
 * Bootstrap it to make it look pretty. (Done.)
 * Add accounts. (Done.)
-* Add commands.
-* Experiment with VoIP?
+* Add commands. (Done.)
 
 ## Contribution
 
-This was created for education purposes, if you have plans with this to make it something else, consider doing a pull request
-or forking it and doing your own thing.
+This was created for education purposes, if you have plans with this to make it something else, consider doing a pull request or forking it and doing your own thing.
