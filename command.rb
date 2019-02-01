@@ -31,13 +31,13 @@ def can_send?(message, users, name)
     end
 end
 def show_help(users, name)
-    users[name].send(erb(:message_help_command))
+    users[name].send(erb(:message_help_command, layout: nil))
 end
 def show_license(users, name)
-    users[name].send(erb(:message_show_command))
+    users[name].send(erb(:message_show_command, layout: nil))
 end
 def change_password(arg, users, name)
-    users[name].send(erb(:message_command, locals: { text: 'Your password has been changed successfully.' }))
+    users[name].send(erb(:message_command, layout: nil, locals: { text: 'Your password has been changed successfully.' }))
     with_user(name) do |user|
         user['password'] = digest(arg)
     end
@@ -45,47 +45,47 @@ end
 def seen(arg, users, name)
     with_user(arg) do |user|
         if user['lastSeen'].nil?
-            users[name].send(erb(:message_command, locals: { text: '#{arg} has never been on this chat before.' }))
+            users[name].send(erb(:message_command, layout: nil, locals: { text: '#{arg} has never been on this chat before.' }))
         else
-            users[name].send(erb(:message_seen_command, locals: { name: arg, time: user['lastSeen'] }))
+            users[name].send(erb(:message_seen_command, layout: nil, locals: { name: arg, time: user['lastSeen'] }))
         end
     end
 end
 def tell(arg, message, users, name)
     with_user(arg) do |user|
         if user['notes'].nil?
-            users[name].send(erb(:message_command, locals: { text: '#{arg} has never been on this chat before.' }))
+            users[name].send(erb(:message_command, layout: nil, locals: { text: '#{arg} has never been on this chat before.' }))
         else
-            users[name].send(erb(:message_command, locals: { text: 'Your message has been sent to #{arg}!' }))
+            users[name].send(erb(:message_command, layout: nil, locals: { text: 'Your message has been sent to #{arg}!' }))
             user['notes'].push({ name => message })
         end
     end
 end
 def yell(message, users, name)
     users.each do |user, sockets|
-        sockets.send(erb(:message_yell_command, locals: { name: name, text: message }))
+        sockets.send(erb(:message_yell_command, layout: nil, locals: { name: name, text: message }))
     end
 end
 def pick(users, name)
     name_picked = users.keys.sample
     users.each do |user, sockets|
-        sockets.send(erb(:message_pick_command, locals: { name: name, pick: name_picked }))
+        sockets.send(erb(:message_pick_command, layout: nil, locals: { name: name, pick: name_picked }))
     end
 end
 def dice(users, name)
     users.each do |user, sockets|
-        sockets.send(erb(:message_dice_command, locals: { name: name, roll: rand(1..6) }))
+        sockets.send(erb(:message_dice_command, layout: nil, locals: { name: name, roll: rand(1..6) }))
     end
 end
 def flip(users, name)
     users.each do |user, sockets|
-        sockets.send(erb(:message_flip_command, locals: { name: name, flip: rand(0..1) }))
+        sockets.send(erb(:message_flip_command, layout: nil, locals: { name: name, flip: rand(0..1) }))
     end
 end
 def ball(users, name)
     message = ['Yes', 'No.', 'Maybe.', 'Possibly.', 'I doubt it.', 'Definitely.', 'Totally.', 'Hell no.', 'Of course.'].sample
     users.each do |user, sockets|
-        sockets.send(erb(:message_ball_command, locals: { name: name, message: message }))
+        sockets.send(erb(:message_ball_command, layout: nil, locals: { name: name, message: message }))
     end
 end
 def motd(arg, users, name)
@@ -95,7 +95,7 @@ def motd(arg, users, name)
     message['motd'] = arg
     Oj.to_file('./private/motd.json', message)
     users.each do |user, sockets|
-        sockets.send(erb(:message_command, locals: { text: 'MOTD has been changed to &ldquo;#{arg}&rdquo;' }))
+        sockets.send(erb(:message_command, layout: nil, locals: { text: 'MOTD has been changed to &ldquo;#{arg}&rdquo;' }))
     end
 end
 

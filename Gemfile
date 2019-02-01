@@ -1,9 +1,10 @@
-source "http://rubygems.org"
+source 'http://rubygems.org'
 
-gem "date"
-gem "glorify"
-gem "oj"
-gem "peri"
-gem "rack"
-gem "sinatra"
-gem "sinatra-websocket"
+gem 'date'
+gem 'glorify'
+gem 'oj'
+gem 'peri'
+gem 'rack'
+gem 'sinatra'
+gem 'sinatra-websocket'
+gem 'websocket-client-simple'
