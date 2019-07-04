@@ -8,4 +8,4 @@ gem 'sinatra'
 gem 'sinatra-websocket'
 gem 'websocket-client-simple'
 
-ruby '2.4.5'
+ruby '2.5.1'
