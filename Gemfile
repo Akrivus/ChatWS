@@ -7,3 +7,5 @@ gem 'rack'
 gem 'sinatra'
 gem 'sinatra-websocket'
 gem 'websocket-client-simple'
+
+ruby '2.4.5'
