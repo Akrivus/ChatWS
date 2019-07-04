@@ -101,10 +101,10 @@ end
 
 # Escapes HTML tags, prevents XSS attacks.
 def unxss(message)
-    message.gsub(/<\/*\w+>/, '')
+    message.gsub('<', '&lt;').gsub('>', '&gt;')
 end
 def digest(input)
-    return Digest::SHA256.hexdigest(input)
+    return Digest::SHA256.hexdigest(input + '_salt')
 end
 def with_user(name)
     users = {}

@@ -3,18 +3,13 @@ GEM
   specs:
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
-    awesome_print (1.8.0)
     daemons (1.2.6)
     date (1.0.0)
     em-websocket (0.3.8)
       addressable (>= 2.1.1)
       eventmachine (>= 0.12.9)
-    engtagger (0.2.1)
     event_emitter (0.2.6)
     eventmachine (1.2.7)
-    gingerice (1.2.2)
-      addressable
-      awesome_print
     glorify (0.5.0)
       nokogiri
       rdoc-rouge
@@ -24,10 +19,6 @@ GEM
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     oj (3.7.0)
-    peri (0.6)
-      engtagger
-      gingerice
-      oj
     public_suffix (3.0.3)
     rack (2.0.6)
     rack-protection (2.0.4)
@@ -65,7 +56,6 @@ DEPENDENCIES
   date
   glorify
   oj
-  peri
   rack
   sinatra
   sinatra-websocket
