@@ -44,7 +44,7 @@
             </div>
         </div>
         <script type="text/javascript">
-            var socket = new WebSocket('ws://' + window.location.host + window.location.pathname);
+            var socket = new WebSocket('wss://' + window.location.host + window.location.pathname);
             socket.onmessage = (function(message) {
                 $("#messages").append(message.data);
                 $("#output").scrollTop(1000000);
