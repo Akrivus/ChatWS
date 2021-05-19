@@ -14,12 +14,14 @@ GEM
       nokogiri
       rdoc-rouge
       sinatra
-    mini_portile2 (2.4.0)
+    mini_portile2 (2.5.1)
     mustermann (1.0.3)
-    nokogiri (1.10.8)
-      mini_portile2 (~> 2.4.0)
+    nokogiri (1.11.4)
+      mini_portile2 (~> 2.5.0)
+      racc (~> 1.4)
     oj (3.7.0)
     public_suffix (3.0.3)
+    racc (1.5.2)
     rack (2.1.4)
     rack-protection (2.0.4)
       rack
