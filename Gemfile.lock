@@ -20,7 +20,7 @@ GEM
       mini_portile2 (~> 2.4.0)
     oj (3.7.0)
     public_suffix (3.0.3)
-    rack (2.1.4)
+    rack (2.1.4.1)
     rack-protection (2.0.4)
       rack
     rdoc (4.3.0)
