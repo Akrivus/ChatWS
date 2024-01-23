@@ -3,6 +3,8 @@
 Project to get me started with WebSocket, it is a simple chat program written with a Sinatra/Ruby backend and an HTML/JS
 front end. I'll work on it regularly to add in some "finesse."
 
+**Message from 6 years later; I did not working on it regularly nor did I add "finesse" and will rewrite this sometime.**
+
 To install it, run `bundle install`
 
 To start it, run `ruby control.rb`
